@@ -19,17 +19,23 @@ public class Solution {
         //Create a list bucket for sorting
         List<int>[] bucket = new List<int>[n + 1];
         
-        //
         foreach (var curr in counter) {
         int freq = curr.Value;
+        // If the current index is a null, then we initialize a list in that index
         if (bucket[freq] == null) bucket[freq] = new List<int>();
+        // We add the current key value to the index of frequency
+        // For ex. If the number has a frequency of 4, it will be placed at index 4
         bucket[freq].Add(curr.Key);
         }
-        // bucket = {[], [], [3], [], [1,2], [], [], [], [], []}
+        // After FOREACH, bucket = {[ ], [ ], [3], [ ], [1,2], [ ], [ ], [ ], [ ], [ ], [ ]}
+        //                index =    0    1    2    3     4     5    6    7    8    9    10
 
+        // Create a list to be returned later
         List<int> result = new List<int>();
 
+        // Start from the last index of the bucket list and the loop should stop if result becomes greater than input k
         for (int i = bucket.Length-1; i >= 0 && result.Count < k; i--) {
+            // If the current index is not null, it means it has a value inside it, we use the AddRange to add all elements in that index
             if (bucket[i] != null) result.AddRange(bucket[i]);
         }
 
