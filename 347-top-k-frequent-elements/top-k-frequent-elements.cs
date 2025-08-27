@@ -39,7 +39,7 @@ public class Solution {
             if (bucket[i] != null) result.AddRange(bucket[i]);
         }
 
-        
+        // Return the result list as an array
         return result.ToArray();
     }
 }
